@@ -68,7 +68,7 @@ public class MongTestIT {
 	//	url.
 		//MongoClient mongoClient = new MongoClient(LOCALHOST, MONGO_TEST_PORT);
 		
-		MongoClient mongoClient = new MongoClient("mongodb://mongo:%s/demo",MONGO_TEST_PORT);
+		MongoClient mongoClient = new MongoClient("mongodb://mongodb/test",MONGO_TEST_PORT);
 		
 		mongoTemplate = new MongoTemplate(mongoClient, "test");
 		

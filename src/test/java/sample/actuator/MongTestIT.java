@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
 import com.mongodb.MongoClient;
+import com.mongodb.MongoURI;
 
 
 class Student {
@@ -63,7 +64,13 @@ public class MongTestIT {
 		
 		String LOCALHOST = System.getenv("CF_HOST_NAME");
 		
-		mongoTemplate = new MongoTemplate(new MongoClient(LOCALHOST, MONGO_TEST_PORT), "test");
+		//MongoURI url = new MongoURI("mongodb://mongo:%s/test");
+	//	url.
+		//MongoClient mongoClient = new MongoClient(LOCALHOST, MONGO_TEST_PORT);
+		
+		MongoClient mongoClient = new MongoClient("mongodb://mongo:%s/demo",MONGO_TEST_PORT);
+		
+		mongoTemplate = new MongoTemplate(mongoClient, "test");
 		
 		
 		

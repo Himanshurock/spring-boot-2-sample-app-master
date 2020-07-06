@@ -44,9 +44,11 @@ public class MongTestIT {
 	@Test
 	public void mongoTest() {
 		System.out.println("=============MongTestIT===========");
-		System.out.println("=============server.port============="+System.getProperty("MONGO_PORT"));
+		System.out.println("=============MONGO_PORT============="+System.getProperty("MONGO_PORT"));
 		System.out.println("=============server.port============="+System.getProperty("server.host"));
-		System.out.println("=============Allt============="+System.getProperties());
+		System.out.println("=============All============="+System.getProperties());
+		System.out.println("=============All Env============="+System.getenv());
+		System.out.println("=============MONGO_PORT Env============="+System.getenv("MONGO_PORT"));
 
 
 		Student stud = new Student();

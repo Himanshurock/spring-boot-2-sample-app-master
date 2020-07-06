@@ -9,6 +9,8 @@ FROM java:8-jre-alpine
 
 EXPOSE 8080
 
+ENV MONGO_PORT 27017
+
 RUN mkdir /app
 COPY --from=MAVEN_TOOL_CHAIN /tmp/target/*.jar /app/spring-boot-application.jar
 

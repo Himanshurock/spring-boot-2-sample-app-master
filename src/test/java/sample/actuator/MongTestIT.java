@@ -92,7 +92,11 @@ public class MongTestIT {
 		Student stud = new Student();
 		stud.setFirstName("Test");
 		stud.setLastName("Mongo");
+		
+		System.out.println("=============mongoTemplate===="+mongoTemplate.toString());
+		
 		mongoTemplate.save(stud);
+		
 		//mongoClient.setReadPreference(readPreference);
 	//	System.out.println("=============MongTestIT==========="+mongoClient+mongoClient.getConnectPoint()+mongoClient.getCredentialsList()+mongoClient.getAddress()+mongoClient.getAddress()+mongoClient.getDatabaseNames()+mongoClient.toString());
 

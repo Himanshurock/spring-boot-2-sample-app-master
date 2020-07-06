@@ -58,10 +58,13 @@ public class MongTestIT {
 		System.out.println("=============Hostname Env============="+System.getenv("HOSTNAME"));
 		
 		
-		String LOCALHOST = System.getenv("HOSTNAME");
+	//	String LOCALHOST = System.getenv("HOSTNAME");
 		int MONGO_TEST_PORT =  Integer.parseInt(System.getenv("MONGO_PORT"));
 		
+		String LOCALHOST = System.getenv("CF_HOST_NAME");
+		
 		mongoTemplate = new MongoTemplate(new MongoClient(LOCALHOST, MONGO_TEST_PORT), "test");
+		
 		
 		
 		//Mongo mongo =  new Mongo(LOCALHOST, MONGO_TEST_PORT);

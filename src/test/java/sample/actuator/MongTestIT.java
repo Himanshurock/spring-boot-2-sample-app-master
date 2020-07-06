@@ -69,7 +69,7 @@ public class MongTestIT {
 	//	String LOCALHOST = System.getenv("HOSTNAME");
 		//int MONGO_TEST_PORT = Integer.parseInt(System.getenv("MONGO_PORT"));
 		
-		MongoClient mongoClient = new MongoClient(LOCALHOST, MONGO_TEST_PORT);
+		MongoClient mongoClient = new MongoClient("1234", MONGO_TEST_PORT);
 		//mongoClient.
 		
 		/*

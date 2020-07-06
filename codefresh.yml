@@ -9,7 +9,7 @@ steps:
     title: Cloning main repository...
     stage: prepare
     type: git-clone
-    repo: 'codefresh-contrib/spring-boot-2-sample-app'
+    repo: 'Himanshurock/spring-boot-2-sample-app-master'
     revision: master
     git: github
   run_unit_tests:
@@ -30,17 +30,20 @@ steps:
     title: Integration test
     stage: 'integration test'
     image: maven:3.5.2-jdk-8-alpine
+    environment:
+      - MONGO_PORT=27017
     commands:
-     - mvn -Dmaven.repo.local=/codefresh/volume/m2_repository verify -Dserver.host=http://my-spring-app
+     - mvn -Dmaven.repo.local=/codefresh/volume/m2_repository integration-test
     services:
       composition:
-        my-spring-app:
-          image: '${{build_app_image}}'
+       mongo:
+          image: mongo:latest
           ports:
-            - 8080
+            - 27017
       readiness:
         timeoutSeconds: 30
         periodSeconds: 15
-        image: byrnedo/alpine-curl
+        image: '${{build_app_image}}'
         commands:
-          - "curl http://my-spring-app:8080/"
+          - "nslookup mongo"
+          - "nc -z mongo 27017"

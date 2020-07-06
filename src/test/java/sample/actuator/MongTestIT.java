@@ -8,6 +8,8 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
+import com.mongodb.MongoClient;
+
 
 class Student {
 	String firstName;
@@ -31,6 +33,9 @@ public class MongTestIT {
 	@Autowired
 	MongoTemplate mongoTemplate;
 	
+	@Autowired
+	MongoClient mongoClient;
+	
 	
 	@Test
 	public void mongoTest() {
@@ -38,7 +43,9 @@ public class MongTestIT {
 		Student stud = new Student();
 		stud.setFirstName("Test");
 		stud.setLastName("Mongo");
-		mongoTemplate.save(stud);
+		//mongoTemplate.save(stud);
+		System.out.println("=============MongTestIT==========="+mongoClient+mongoClient.getConnectPoint()+mongoClient.getCredentialsList()+mongoClient.getAddress()+mongoClient.getAddress()+mongoClient.getDatabaseNames()+mongoClient.toString());
+
 		
 		Query query = Query.query(Criteria.where(stud.getFirstName()).is("Test"));
 		List<Student> lst =  mongoTemplate.find(query, Student.class);

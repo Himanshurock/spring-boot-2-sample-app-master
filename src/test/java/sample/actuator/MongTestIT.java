@@ -44,7 +44,7 @@ public class MongTestIT {
 	@Test
 	public void mongoTest() {
 		System.out.println("=============MongTestIT===========");
-		System.out.println("=============server.port============="+System.getProperty("server.port"));
+		System.out.println("=============server.port============="+System.getProperty("MONGO_PORT"));
 		System.out.println("=============server.port============="+System.getProperty("server.host"));
 		System.out.println("=============Allt============="+System.getProperties());
 

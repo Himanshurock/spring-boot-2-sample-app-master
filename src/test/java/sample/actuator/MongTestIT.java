@@ -67,9 +67,18 @@ public class MongTestIT {
 		//MongoURI url = new MongoURI("mongodb://mongo:%s/test");
 	//	url.
 		//MongoClient mongoClient = new MongoClient(LOCALHOST, MONGO_TEST_PORT);
-		MongoClientURI mongoClientURI = new MongoClientURI("mongodb://mongodb/test:"+MONGO_TEST_PORT);
 		
-		MongoClient mongoClient = new MongoClient(mongoClientURI);
+		/*
+		 * MongoClientURI mongoClientURI = new
+		 * MongoClientURI("mongodb://mongodb/test:"+MONGO_TEST_PORT);
+		 * 
+		 * MongoClient mongoClient = new MongoClient(mongoClientURI);
+		 */
+		//"mongodb://host1:27017"
+		String url = "mongodb://"+LOCALHOST+":"+MONGO_TEST_PORT;
+		MongoClient mongoClient = new MongoClient(new MongoClientURI(url));
+
+		//MongoClient mongoClient = new MongoClient("mongodb://mongodb/test",MONGO_TEST_PORT);
 		
 		mongoTemplate = new MongoTemplate(mongoClient, "test");
 		

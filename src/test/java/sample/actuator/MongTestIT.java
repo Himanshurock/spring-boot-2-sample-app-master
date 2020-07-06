@@ -59,10 +59,10 @@ public class MongTestIT {
 		System.out.println("=============Hostname Env============="+System.getenv("HOSTNAME"));
 		
 		
-	//	String LOCALHOST = System.getenv("HOSTNAME");
+		String LOCALHOST = System.getenv("HOSTNAME");
 		int MONGO_TEST_PORT =  Integer.parseInt(System.getenv("MONGO_PORT"));
 		
-		String LOCALHOST = System.getenv("CF_HOST_NAME");
+		//String LOCALHOST = System.getenv("CF_HOST_NAME");
 		
 		//MongoURI url = new MongoURI("mongodb://mongo:%s/test");
 	//	url.

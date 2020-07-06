@@ -3,22 +3,11 @@ package sample.actuator;
 import java.util.List;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataAccessException;
-import org.springframework.dao.support.PersistenceExceptionTranslator;
-import org.springframework.data.mongodb.MongoDbFactory;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import com.mongodb.DB;
-import com.mongodb.Mongo;
 import com.mongodb.MongoClient;
-import com.mongodb.client.MongoDatabase;
 
 
 class Student {
@@ -41,11 +30,22 @@ class Student {
 
 public class MongTestIT {
 	
-	@Autowired
-	//MongoTemplate mongoTemplate = new MongoTemplate(null);
+	//@Autowired
+	private MongoTemplate mongoTemplate;
 	
 
-	
+	/*
+	 * @Bean public MongoDbFactory mongoDbFactory() throws Exception { String
+	 * LOCALHOST = System.getenv("HOSTNAME"); int MONGO_TEST_PORT =
+	 * Integer.parseInt(System.getenv("MONGO_PORT"));
+	 * 
+	 * MongoClient mongoClient = new MongoClient(LOCALHOST, MONGO_TEST_PORT); //
+	 * UserCredentials userCredentials = new UserCredentials("", ""); MongoDbFactory
+	 * return new ; }
+	 * 
+	 * @Bean public MongoTemplate mongoTemplate() throws Exception { MongoTemplate
+	 * mongoTemplate = new MongoTemplate(mongoDbFactory()); return mongoTemplate; }
+	 */
 	
 	@Test
 	public void mongoTest() {
@@ -57,40 +57,37 @@ public class MongTestIT {
 		System.out.println("=============MONGO_PORT Env============="+System.getenv("MONGO_PORT"));
 		System.out.println("=============Hostname Env============="+System.getenv("HOSTNAME"));
 		
-		//Mongo mongo =  new Mongo(LOCALHOST, MONGO_TEST_PORT);
 		
 		String LOCALHOST = System.getenv("HOSTNAME");
-		int MONGO_TEST_PORT = Integer.parseInt(System.getenv("MONGO_PORT"));
+		int MONGO_TEST_PORT =  Integer.parseInt(System.getenv("MONGO_PORT"));
 		
-		//MongoClient mongoClient = new MongoClient();
+		mongoTemplate = new MongoTemplate(new MongoClient(LOCALHOST, MONGO_TEST_PORT), "test");
 		
-		MongoDbFactory db= new MongoDbFactory() {
-			
-			@Override
-			public DB getLegacyDb() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public PersistenceExceptionTranslator getExceptionTranslator() {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public MongoDatabase getDb(String dbName) throws DataAccessException {
-				// TODO Auto-generated method stub
-				return null;
-			}
-			
-			@Override
-			public MongoDatabase getDb() throws DataAccessException {
-				// TODO Auto-generated method stub
-				return null;
-			}
-		};
-		MongoTemplate mongoTemplate = new MongoTemplate(db);
+		
+		//Mongo mongo =  new Mongo(LOCALHOST, MONGO_TEST_PORT);
+		
+	//	String LOCALHOST = System.getenv("HOSTNAME");
+		//int MONGO_TEST_PORT = Integer.parseInt(System.getenv("MONGO_PORT"));
+		
+		MongoClient mongoClient = new MongoClient(LOCALHOST, MONGO_TEST_PORT);
+		//mongoClient.
+		
+		/*
+		 * MongoDbFactory db= new MongoDbFactory() {
+		 * 
+		 * @Override public DB getLegacyDb() { // TODO Auto-generated method stub return
+		 * null; }
+		 * 
+		 * @Override public PersistenceExceptionTranslator getExceptionTranslator() { //
+		 * TODO Auto-generated method stub return null; }
+		 * 
+		 * @Override public MongoDatabase getDb(String dbName) throws
+		 * DataAccessException { // TODO Auto-generated method stub return null; }
+		 * 
+		 * @Override public MongoDatabase getDb() throws DataAccessException { // TODO
+		 * Auto-generated method stub return null; } }; MongoTemplate mongoTemplate =
+		 * new MongoTemplate(db); mongoTemplate.
+		 */
 
 		Student stud = new Student();
 		stud.setFirstName("Test");
